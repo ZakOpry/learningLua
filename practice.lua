@@ -56,3 +56,7 @@ else
 end
 
 -- not equal is ~= unlike javascript
+
+-- Ternary is written as follows
+local age = 33
+local old = age > 30 and true or false
