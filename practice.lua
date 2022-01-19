@@ -125,6 +125,41 @@ end
 local function addTwo(num1, num2)
     local ans = tonumber(num1) + tonumber(num2)
     print(ans)
+    return ans
 end
 
 addTwo(8, 4)
+
+-- Coe Routines (much like async await)
+local routine_1 = coroutine.create(
+    function()
+        for i = 1, 10, 1 do
+            print(i)
+
+            if i == 5 then
+                coroutine.yield()
+            end
+        end
+    end
+)
+
+local routine_func = function ()
+    for i = 11, 20 do
+        print("(Routine 2): " .. i)
+    end
+end
+
+local routine_2 = coroutine.create(routine_func)
+
+coroutine.resume(routine_1)
+print(coroutine.status(routine_1))
+coroutine.resume(routine_1)
+print(coroutine.status(routine_1))
+
+--O.S module
+print(os.time({
+    year = 2000,
+    month = 10,
+    day = 1, 
+    hour = 13
+}))
